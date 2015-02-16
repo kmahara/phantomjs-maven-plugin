@@ -22,6 +22,8 @@ package com.github.klieber.phantomjs.cache;
 
 import com.github.klieber.phantomjs.archive.PhantomJSArchive;
 import com.github.klieber.phantomjs.util.ArtifactBuilder;
+import com.github.klieber.phantomjs.util.TestUtils;
+
 import org.eclipse.aether.RepositorySystemSession;
 import org.eclipse.aether.artifact.Artifact;
 import org.eclipse.aether.repository.LocalRepository;
@@ -82,6 +84,6 @@ public class CachedArtifactTest {
     when(localRepositoryManager.getPathForLocalArtifact(artifact)).thenReturn(ARTIFACT_PATH);
     when(localRepository.getBasedir()).thenReturn(basedir);
 
-    assertEquals(REPOSITORY_PATH + "/" + ARTIFACT_PATH, cachedArtifact.getFile().getAbsolutePath());
+    assertEquals(REPOSITORY_PATH + "/" + ARTIFACT_PATH, TestUtils.normalizePath(cachedArtifact.getFile().getAbsolutePath()));
   }
 }
