@@ -29,6 +29,28 @@
     </developer>
   </developers>
 
+	<distributionManagement>
+		<repository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>trasis.jp</id>
+			<name>Trasis Repository</name>
+			<url>scpexe://trasis.jp/vhost/center.trasis.jp/html/maven2</url>
+		</repository>
+		<snapshotRepository>
+			<uniqueVersion>true</uniqueVersion>
+			<id>trasis.jp</id>
+			<name>Trasis Snapshot Repository</name>
+			<url>scpexe://trasis.jp/vhost/center.trasis.jp/html/maven2</url>
+		</snapshotRepository>
+		<site>
+			<id>trasis.jp</id>
+			<url>
+				scpexe://trasis.jp/vhost/center.trasis.jp/html/site/${project.name}
+			</url>
+		</site>
+	</distributionManagement>
+
+<!--
   <distributionManagement>
     <snapshotRepository>
       <id>ossrh</id>
@@ -52,6 +74,7 @@
     <system>travis-ci</system>
     <url>https://travis-ci.org/klieber/phantomjs-maven-plugin</url>
   </ciManagement>
+  -->
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
