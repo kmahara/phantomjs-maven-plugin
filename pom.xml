@@ -3,7 +3,7 @@
 
   <groupId>com.github.klieber</groupId>
   <artifactId>phantomjs-maven-plugin</artifactId>
-  <version>0.5-SNAPSHOT</version>
+  <version>0.5trasis</version>
   <packaging>maven-plugin</packaging>
 
   <name>PhantomJS Maven Plugin</name>
