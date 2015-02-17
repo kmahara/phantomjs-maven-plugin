@@ -20,7 +20,11 @@
  */
 package com.github.klieber.phantomjs.archive;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public abstract class PhantomJSArchive {
+	private static final Logger LOGGER = LoggerFactory.getLogger(PhantomJSArchive.class);
 	
 	private final String basename;
 	private final String version;
@@ -43,10 +47,13 @@ public abstract class PhantomJSArchive {
 	}
 	
 	public final String getPathToExecutable() {
-		return this.getNameWithoutExtension()
-		.append("/")
-		.append(this.getExecutable())
-		.toString();
+		StringBuilder sb = this.getNameWithoutExtension().append("/");
+
+		if (getMajorVersion() >= 2) {
+			sb.append("bin/");
+		}
+
+		return	sb.append(this.getExecutable())	.toString();
 	}
 	
 	public final String getExtractToPath() {
@@ -79,5 +86,22 @@ public abstract class PhantomJSArchive {
 			sb.append("-").append(this.getArch());
 		}
 		return sb.toString();
+	}
+    
+	public int getMajorVersion() {
+		if (version == null) {
+			return 0;
+		}
+
+		try {
+			String[] strings = version.split("\\.");
+
+			int majorVersion = Integer.parseInt(strings[0]);
+
+			return majorVersion;
+		} catch (Exception e) {
+			LOGGER.error("Failed to parse version: " + version, e);
+			return 0;
+		}
 	}
 }
